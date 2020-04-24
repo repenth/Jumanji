@@ -4,21 +4,26 @@ from tile import Tile
 from path1 import Path1
 pygame.init()
 
+                    
+win = pygame.display.set_mode((1050,650))
 
 
-win = pygame.display.set_mode((1150,680))
 pygame.display.set_caption("Jumanji")
 
-bg = pygame.image.load('yoyo1.png')
-char = pygame.image.load('monkey2.png')
+bg = pygame.image.load('game_bg.png')
+char = pygame.image.load('image.png')
 
-x = 50
+x = 400
 y = 400
 width = 40
 height = 60
 vel = 20
 incr = 0
 steps = 0
+
+
+
+
 
 clock = pygame.time.Clock()
 
@@ -28,6 +33,8 @@ jumpCount = 10
 left = False
 right = False
 walkCount = 0
+
+
 
 def redrawGameWindow():
     global walkCount
@@ -61,6 +68,7 @@ while run:
             print("all moves have ended")
 
         
+
     redrawGameWindow() 
     
     
