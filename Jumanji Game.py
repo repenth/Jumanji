@@ -5,13 +5,13 @@ from path1 import Path1
 pygame.init()
 
                     
-win = pygame.display.set_mode((1050,650))
+win = pygame.display.set_mode((1000,600))
 
 
 pygame.display.set_caption("Jumanji")
 
-bg = pygame.image.load('game_bg.png')
-char = pygame.image.load('image.png')
+bg = pygame.image.load(r'final project\game_bg.png')
+char = pygame.image.load(r'final project\monkey2.png')
 
 x = 400
 y = 400
@@ -37,7 +37,7 @@ walkCount = 0
 
 
 def redrawGameWindow():
-    global walkCount
+    global walkCount, x,y
     
     win.blit(bg, (12,10))  
     
@@ -48,26 +48,25 @@ def redrawGameWindow():
 run = True
 
 while run:
-    clock.tick(27)
+    clock.tick(100)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
-
-    keys = pygame.key.get_pressed()
-    
-    if keys[pygame.K_SPACE]:
-        incr = random.randint(1,6)
-        print("dice rolled "+str(incr)) # show dice img with number
-        steps += incr
-        if (steps < 20):
-            x = Path1[steps].xCoordinate
-            y = Path1[steps].yCoordinate
-            print("x: "+ str(x) + " y: "+ str(y))
-        else:
-            print("all moves have ended")
-
-        
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                incr = random.randint(1,6)
+                 # show dice img with number
+                steps += incr
+                if (steps < 20):
+                    x = Path1[steps].xCoordinate
+                    y = Path1[steps].yCoordinate
+                    print("dice rolled "+str(incr))
+                    print("x: "+ str(x) + " y: "+ str(y))
+                elif (steps == 20):
+                    print("Jumangi")
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            print(pygame.mouse.get_pos())
 
     redrawGameWindow() 
     
