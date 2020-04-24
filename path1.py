@@ -21,4 +21,3 @@ Path1.append(Tile(302, 315))
 Path1.append(Tile(317, 267))
 Path1.append(Tile(380, 340))
 Path1.append(Tile(505, 251))
-
