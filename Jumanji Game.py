@@ -1,4 +1,7 @@
 import pygame
+import random
+from tile import Tile
+from path1 import Path1
 pygame.init()
 
 
@@ -6,8 +9,6 @@ pygame.init()
 win = pygame.display.set_mode((1150,680))
 pygame.display.set_caption("Jumanji")
 
-walkRight = [pygame.image.load('monkey2.png')] #pygame.image.load('R2.png'), pygame.image.load('R3.png'), pygame.image.load('R4.png'), pygame.image.load('R5.png'), pygame.image.load('R6.png'), pygame.image.load('R7.png'), pygame.image.load('R8.png'), pygame.image.load('R9.png')]
-#walkLeft = [pygame.image.load('L1.png'), pygame.image.load('L2.png'), pygame.image.load('L3.png'), pygame.image.load('L4.png'), pygame.image.load('L5.png'), pygame.image.load('L6.png'), pygame.image.load('L7.png'), pygame.image.load('L8.png'), pygame.image.load('L9.png')]
 bg = pygame.image.load('yoyo1.png')
 char = pygame.image.load('monkey2.png')
 
@@ -15,7 +16,9 @@ x = 50
 y = 400
 width = 40
 height = 60
-vel = 5
+vel = 20
+incr = 0
+steps = 0
 
 clock = pygame.time.Clock()
 
@@ -30,22 +33,10 @@ def redrawGameWindow():
     global walkCount
     
     win.blit(bg, (12,10))  
-    if walkCount + 1 >= 27:
-        walkCount = 0
-        
-    if left:  
-        win.blit(walkLeft[walkCount//3], (x,y))
-        walkCount += 1                          
-    elif right:
-        win.blit(walkRight[walkCount//200000], (x,y))
-        walkCount += 1
-    else:
-        win.blit(char, (x, y))
-        walkCount = 0
+    
+    win.blit(char, (x, y))
         
     pygame.display.update() 
-    
-
 
 run = True
 
@@ -58,35 +49,18 @@ while run:
 
     keys = pygame.key.get_pressed()
     
-    if keys[pygame.K_LEFT] and x > vel: 
-        x -= vel
-        left = True
-        right = False
+    if keys[pygame.K_SPACE]:
+        incr = random.randint(1,6)
+        print("dice rolled "+str(incr)) # show dice img with number
+        steps += incr
+        if (steps < 20):
+            x = Path1[steps].xCoordinate
+            y = Path1[steps].yCoordinate
+            print("x: "+ str(x) + " y: "+ str(y))
+        else:
+            print("all moves have ended")
 
-    elif keys[pygame.K_RIGHT] and x < 500 - vel - width:  
-        x += vel
-        left = False
-        right = True
         
-    else: 
-        left = False
-        right = False
-        walkCount = 0
-        
-    if not(isJump):
-        if keys[pygame.K_SPACE]:
-            isJump = True
-            left = False
-            right = False
-            walkCount = 0
-    else:
-        if jumpCount >= -10:
-            y -= (jumpCount * abs(jumpCount)) * 0.5
-            jumpCount -= 1
-        else: 
-            jumpCount = 10
-            isJump = False
-
     redrawGameWindow() 
     
     
