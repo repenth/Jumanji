@@ -10,13 +10,20 @@ win = pygame.display.set_mode((1000,600))
 
 pygame.display.set_caption("Jumanji")
 
-bg = pygame.image.load(r'final project\game_bg.png')
-char = pygame.image.load(r'final project\monkey2.png')
+bg = pygame.image.load(r'C:\Users\User\Desktop\Jumanji-master\game_bg.png')
+char = pygame.image.load(r'C:\Users\User\Desktop\Jumanji-master\image.png')
+elephant = pygame.image.load(r"C:\Users\User\Desktop\Jumanji-master\elephant.png")
+pX = 731
+pY = 54
+def player(x,y):
+    win.blit(elephant, (x, y))
+player(pX,pY)
 
-x = 400
-y = 400
-width = 40
-height = 60
+x = 263
+y = 500
+
+#width = 100
+#height = 100
 vel = 20
 incr = 0
 steps = 0
@@ -33,6 +40,7 @@ jumpCount = 10
 left = False
 right = False
 walkCount = 0
+
 
 
 
@@ -64,6 +72,8 @@ while run:
                     print("dice rolled "+str(incr))
                     print("x: "+ str(x) + " y: "+ str(y))
                 elif (steps == 20):
+                    x = 505
+                    y = 251
                     print("Jumangi")
         elif event.type == pygame.MOUSEBUTTONDOWN:
             print(pygame.mouse.get_pos())
