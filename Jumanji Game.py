@@ -26,7 +26,7 @@ def button(msg,x,y,w,h,ic,ac, action=None):
     else:
         pygame.draw.rect(screen, ic,(x,y,w,h))
 
-    smallText = pygame.font.SysFont(r"final project\fontfile.ttf",30)
+    smallText = pygame.font.SysFont(r"jumangi\final project\fontfile.ttf",30)
     textSurf, textRect = text_objects(msg, smallText)
     textRect.center = ( (x+(w/2)), (y+(h/2)) )
     screen.blit(textSurf, textRect)
@@ -67,7 +67,7 @@ def intro():
     light_green = (68,110,73)
     textcolor = (201,172,104)
     #background 
-    background = pygame.image.load(r"paint\bg.png")
+    background = pygame.image.load(r"final project\bg.png")
 
     
     #Title and Icone
@@ -98,7 +98,7 @@ def token_screen():
     light_green = (68,110,73)
     textcolor = (201,172,104)
     tk_screen = pygame.display.set_mode((1000,600)) #(x,y)/(w,h)
-    background = pygame.image.load(r"paint\screen2.png")
+    background = pygame.image.load(r"final project\screen2.png")
 
     # background music
 
@@ -122,7 +122,7 @@ def game_screen():
 
     bg = pygame.image.load(r'final project\game_bg.png')
 
-    char = pygame.image.load(r'final project\image.png')
+    char = pygame.image.load(r"final project\image.png")
     x = 263
     y = 500
 
